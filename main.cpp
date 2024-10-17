@@ -1,16 +1,8 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 
 void printHeader() {
     std::cout << "========================================\n";
-    std::cout << "          NUMBER GUESSING GAME          \n";
-    std::cout << "========================================\n";
-}
-
-void printFooter() {
-    std::cout << "========================================\n";
-    std::cout << "          THANK YOU FOR PLAYING!        \n";
+    std::cout << "          SIMPLE CALCULATOR             \n";
     std::cout << "========================================\n";
 }
 
@@ -18,32 +10,52 @@ void printDivider() {
     std::cout << "----------------------------------------\n";
 }
 
+void printFooter() {
+    std::cout << "========================================\n";
+    std::cout << "      THANK YOU FOR USING THE CALCULATOR\n";
+    std::cout << "========================================\n";
+}
+
 int main() {
-    srand(time(0));
-    int randomNumber = rand() % 100 + 1;
-    int guess;
-    int attempts = 0;
+    double num1, num2;
+    char operation;
 
     printHeader();
-    std::cout << "I have selected a random number between 1 and 100.\n";
-    std::cout << "Can you guess the number?\n";
+    std::cout << "Welcome to the Simple Calculator!\n";
     printDivider();
 
-    do {
-        std::cout << "Enter your guess: ";
-        std::cin >> guess;
-        attempts++;
+    std::cout << "Enter the first number: ";
+    std::cin >> num1;
 
-        if (guess > randomNumber) {
-            std::cout << "Too high! Try again.\n";
-        } else if (guess < randomNumber) {
-            std::cout << "Too low! Try again.\n";
-        } else {
-            printDivider();
-            std::cout << "Congratulations! You've guessed the correct number in " << attempts << " attempts.\n";
-            printDivider();
-        }
-    } while (guess != randomNumber);
+    std::cout << "Enter the second number: ";
+    std::cin >> num2;
+
+    printDivider();
+    std::cout << "Choose an operation (+, -, *, /): ";
+    std::cin >> operation;
+
+    printDivider();
+
+    switch (operation) {
+        case '+':
+            std::cout << "Result: " << num1 << " + " << num2 << " = " << num1 + num2 << std::endl;
+            break;
+        case '-':
+            std::cout << "Result: " << num1 << " - " << num2 << " = " << num1 - num2 << std::endl;
+            break;
+        case '*':
+            std::cout << "Result: " << num1 << " * " << num2 << " = " << num1 * num2 << std::endl;
+            break;
+        case '/':
+            if (num2 != 0) {
+                std::cout << "Result: " << num1 << " / " << num2 << " = " << num1 / num2 << std::endl;
+            } else {
+                std::cout << "Error! Division by zero is not allowed.\n";
+            }
+            break;
+        default:
+            std::cout << "Invalid operation! Please choose +, -, *, or /.\n";
+    }
 
     printFooter();
     return 0;
